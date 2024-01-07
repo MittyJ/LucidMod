@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rIuJJINiX/QmRyCKJXR4FvLpFTyZzF0YHpI742Sp4Ko60veM/XH5kBIFev0jmJI+hAhe6Z5jyHRJ0N3VFEAGiw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\neddi\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\LucidMod\\LucidMod.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\neddi\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

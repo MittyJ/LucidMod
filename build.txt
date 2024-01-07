@@ -1,0 +1,5 @@
+displayName = Lucid Mod
+author = Mitty
+version = 0.1
+modReferences = SubworldLibrary
+dllReferences = StructureHelper
