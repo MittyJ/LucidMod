@@ -10,7 +10,7 @@ namespace LucidMod.Items
 	public class InsigniaOfRenezald : ModItem
 	{
         // The Display Name and Tooltip of this item can be edited in the Localization/en-US_Mods.LucidMod.hjson file.
-		public static readonly int MonasticDamageModifier = 200;
+		public static readonly int MonasticDamageModifier = 15;
 
 
 		public override void SetStaticDefaults() {
@@ -37,7 +37,7 @@ namespace LucidMod.Items
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
-			player.GetDamage(ModContent.GetInstance<MonasticDamage>()) *= MonasticDamageModifier / 100f;
+			player.GetDamage(ModContent.GetInstance<MonasticDamage>()) *= 1 + MonasticDamageModifier / 100f;
 		}
 
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,

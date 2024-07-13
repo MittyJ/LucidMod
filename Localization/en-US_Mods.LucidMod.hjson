@@ -60,4 +60,19 @@ NPCs: {
 	}
 
 	BenightedHusk.DisplayName: Benighted Husk
+	Lenezald.DisplayName: Lenezald
 }
+
+Projectiles: {
+	LenezaldSword.DisplayName: Lenezald Sword
+	LenezaldBloodSword.DisplayName: Lenezald Blood Sword
+	LenezaldCutlass.DisplayName: Lenezald Cutlass
+	LenezaldExcalibur.DisplayName: Lenezald Excalibur
+	LenezaldMuramasa.DisplayName: Lenezald Muramasa
+	LenezaldPalladium.DisplayName: Lenezald Palladium
+	LenezaldStarWrath.DisplayName: Lenezald Star Wrath
+	SpecialLenezaldSword.DisplayName: Special Lenezald Sword
+	TinglerBeam.DisplayName: Tingler Beam
+}
+
+DamageClasses.MonasticDamage.DisplayName: Monastic Damage

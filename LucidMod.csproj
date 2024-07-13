@@ -14,9 +14,6 @@
     <Reference Include="StructureHelper">
       <HintPath>lib\StructureHelper.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
-    </Reference>
      <Reference Include="SubworldLibrary">
       <HintPath>..\..\..\..\..\..\Desktop\Sublib\SubworldLibrary.dll</HintPath>
     </Reference>

@@ -15,9 +15,9 @@ namespace LucidMod.Items
 
 		public override void SetDefaults()
 		{
-			Item.damage = 50;
+			Item.damage = 10;
 			Item.DamageType = ModContent.GetInstance<MonasticDamage>();
-			Item.useTime = 10;
+			Item.useTime = 20;
 			Item.width = 40;
 			Item.height = 40;
 			Item.useAnimation = 10;
@@ -27,8 +27,8 @@ namespace LucidMod.Items
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileID.NebulaArcanum;
-			Item.shootSpeed = 8;
+			Item.shoot = ProjectileID.SwordBeam;
+			Item.shootSpeed = 3;
 
 		}
 
@@ -42,8 +42,9 @@ namespace LucidMod.Items
 		
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-
-			Projectile.NewProjectile(source, position, velocity, type, damage * 2, knockback, player.whoAmI, 0f, 0f);
+			if (Main.rand.NextBool()) {
+				Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, 0f, 0f);
+			}
 
 			return false;
 		}
