@@ -7,13 +7,12 @@ using LucidMod.Content.Systems;
 namespace LucidMod.NPCs
 {
 	[AutoloadHead]
-	public class Chenezald : ModNPC
+	public class OldPhilosopher : ModNPC
 	{
-		//Quest: Gather Philospher tokens from benighted husks, quest rewards armor
 
 		InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 		public override void SetStaticDefaults() {
-			Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
+			Main.npcFrameCount[Type] = 26; // The total amount of frames the NPC has
 			NPCID.Sets.ShimmerTownTransform[NPC.type] = false; // This set says that the Town NPC has a Shimmered form. Otherwise, the Town NPC will become transparent when touching Shimmer like other enemies.
 
 			NPCID.Sets.ShimmerTownTransform[Type] = false; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
@@ -37,7 +36,7 @@ namespace LucidMod.NPCs
 
 		public override List<string> SetNPCNameList() {
 			return new List<string>() {
-				"Chenezald",
+				"Renezald",
 			};
 		}
 
@@ -45,13 +44,13 @@ namespace LucidMod.NPCs
             int num = Main.rand.Next(2);
             switch (num) {
                 case 0:
-                    return "Welcome to the Lucid Jungle, I am Chenezald";
+                    return "Welcome to the Lucid Jungle, I am Renezald";
                 case 1:
                     return "This place isn't physical, anyone enlightened enough can access it from the physical world";
                 case 2:
                     return "While the Lucid Jungle is not a real place, it is far from a figment of the imagination";
             }
-            return "Hello I am Chenezald, my chat is broken";
+            return "Hello I am Renezald, my chat is broken";
 		}
 
 

@@ -7,7 +7,7 @@ using LucidMod.Content.Systems;
 namespace LucidMod.NPCs
 {
 	[AutoloadHead]
-	public class Anthoniezald : ModNPC
+	public class Abbot : ModNPC
 	{
 		//Quest: Kill a miniboss, gain wings
 

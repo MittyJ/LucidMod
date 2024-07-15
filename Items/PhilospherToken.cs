@@ -14,12 +14,9 @@ namespace LucidMod.Items
 		{
 			Item.width = 40;
 			Item.height = 40;
+            Item.maxStack = Item.CommonMaxStack;
 		}
 
-        public override bool CanStack(Item source)
-        {
-            return base.CanStack(source);
-        }
 
     }
 }

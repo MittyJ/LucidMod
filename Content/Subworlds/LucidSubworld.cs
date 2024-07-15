@@ -34,6 +34,9 @@ namespace LucidMod.Content.Subworlds
 			Main.rockLayer = Main.maxTilesY; // Hides the cavern layer way out of bounds
             SubworldSystem.hideUnderworld = true;   
             StructureHelper.Generator.GenerateStructure("Content/Structures/LucidSubworld4", new Point16(75, 45), LucidMod.Instance);
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 210 * PIXELS_IN_BLOCK, 235 * PIXELS_IN_BLOCK, ModContent.NPCType<SoulHunter>());
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 2515 * PIXELS_IN_BLOCK, 265 * PIXELS_IN_BLOCK, ModContent.NPCType<Abbot>());
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 1270 * PIXELS_IN_BLOCK, 70 * PIXELS_IN_BLOCK, ModContent.NPCType<OldPhilosopher>());
         }
 
 		// Sets the time to the middle of the day whenever the subworld loads
@@ -41,10 +44,7 @@ namespace LucidMod.Content.Subworlds
 		{
 			Main.dayTime = true;
 			Main.time = 27000;
-            NPC.NewNPC(new EntitySource_SpawnNPC(), 210 * PIXELS_IN_BLOCK, 235 * PIXELS_IN_BLOCK, ModContent.NPCType<Chenezald>());
-            NPC.NewNPC(new EntitySource_SpawnNPC(), 2515 * PIXELS_IN_BLOCK, 265 * PIXELS_IN_BLOCK, ModContent.NPCType<Anthoniezald>());
-            NPC.NewNPC(new EntitySource_SpawnNPC(), 1270 * PIXELS_IN_BLOCK, 70 * PIXELS_IN_BLOCK, ModContent.NPCType<Renezald>());
-
+        
 		}
 
         public override void OnEnter()
