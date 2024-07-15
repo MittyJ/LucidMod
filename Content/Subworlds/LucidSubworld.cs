@@ -5,7 +5,9 @@ using Terraria.IO;
 using Terraria.WorldBuilding;
 using Terraria.GameContent.Generation;
 using LucidMod.Content.Systems;
-using System;
+using Terraria.ModLoader;
+using LucidMod.NPCs;
+using Terraria.DataStructures;
 
 
 
@@ -14,8 +16,10 @@ namespace LucidMod.Content.Subworlds
     public class LucidSubworld : Subworld
 {
 
-	public override int Width => 8400;
-	public override int Height => 1000;
+	public override int Width => 2600;
+	public override int Height => 600;
+
+    public const int PIXELS_IN_BLOCK = 16;
 
 	public InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 
@@ -26,11 +30,10 @@ namespace LucidMod.Content.Subworlds
         private void SubworldGeneration(GenerationProgress progress, GameConfiguration configuration)
         {
             Main.worldSurface = 600.0;
-            progress.Message = "Generating terrain"; // Sets the text displayed for this pass
-			 Main.rockLayer = Main.maxTilesY; // Hides the cavern layer way out of bounds
-            SubworldSystem.hideUnderworld = true;
-			StructureHelper.Generator.GenerateStructure("Content/Structures/LucidJungle", new Terraria.DataStructures.Point16(0, 42), LucidMod.Instance);
-        
+            progress.Message = "Entering World"; // Sets the text displayed for this pass
+			Main.rockLayer = Main.maxTilesY; // Hides the cavern layer way out of bounds
+            SubworldSystem.hideUnderworld = true;   
+            StructureHelper.Generator.GenerateStructure("Content/Structures/LucidSubworld4", new Point16(75, 45), LucidMod.Instance);
         }
 
 		// Sets the time to the middle of the day whenever the subworld loads
@@ -38,18 +41,22 @@ namespace LucidMod.Content.Subworlds
 		{
 			Main.dayTime = true;
 			Main.time = 27000;
-			
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 210 * PIXELS_IN_BLOCK, 235 * PIXELS_IN_BLOCK, ModContent.NPCType<Chenezald>());
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 2515 * PIXELS_IN_BLOCK, 265 * PIXELS_IN_BLOCK, ModContent.NPCType<Anthoniezald>());
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 1270 * PIXELS_IN_BLOCK, 70 * PIXELS_IN_BLOCK, ModContent.NPCType<Renezald>());
+
 		}
 
         public override void OnEnter()
         {
-            inventorySaveSystem.SwapInventory();
+            
+
         }
 
 
         public override void OnExit()
         {
-			inventorySaveSystem.SwapInventory();
+
         }
 
 		
