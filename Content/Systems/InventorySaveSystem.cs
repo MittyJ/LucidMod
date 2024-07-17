@@ -13,97 +13,63 @@ namespace LucidMod.Content.Systems
 {
     public class InventorySaveSystem : ModPlayer
     {
-
-        public static Item[] cachedInventory = new Item[59];
-        public static Item[] currentInventory = new Item[59];
-        public static Item[] cachedEquipment = new Item[5];
-        public static Item[] currentEquipment = new Item[5];
+        // Keep in mind that each player has a ModPlayer instance, so none of this should've have been static in the first place
+        Item[] cachedInventory;
+        Item[] currentInventory;
+        Item[] cachedEquipment;
+        Item[] currentEquipment;
        
-        public static Item[] cachedArmor = new Item[20];
-        public static Item[] currentArmor = new Item[20];
+        Item[] cachedArmor;
+        Item[] currentArmor;
         
+        public void SwapInventory() {
+            Player.trashItem = new Item();
 
+            // NOTE: CacheAndSwap is later in this file
+            CacheAndSwap(Player.inventory, ref currentInventory, ref cachedInventory);
 
+            // CacheAndSwap(Player.miscEquips, ref currentEquipment, ref cachedEquipment);
 
-        public static void SwapInventory() {
-            Main.LocalPlayer.trashItem = new Item(0);
+            // CacheAndSwap(Player.armor, ref currentArmor, ref cachedArmor);
+        }
 
-            for (int i = 0; i < 59; i++) {
-                currentInventory[i] = Main.LocalPlayer.inventory[i];
-            }
-            if (cachedInventory[0] == null) {
-                for (int i = 0; i < 59; i++) {
-                    cachedInventory[i] = new Item();
-                }
-            }
-            
-            for (int i = 0; i < 59; i++) {
-                Main.LocalPlayer.inventory[i] = cachedInventory[i];
-            }
-            for (int i = 0; i < 59; i++) {
-                cachedInventory[i] = currentInventory[i];
-            }
-            ////////////////////////////////////////////////////////////////////
-            if (cachedEquipment[0] == null) {
-                for (int i = 0; i < 5; i++) {
-                    currentEquipment[i] = Main.LocalPlayer.miscEquips[i];
-                }
-                for (int i = 0; i < 5; i++) {
-                    Main.LocalPlayer.miscEquips[i] = new Item(0);
-                }
-                for (int i = 0; i < 5; i++) {
-                    cachedEquipment[i] = currentEquipment[i];
+        // New method to simplify code structure
+        private static void CacheAndSwap(Item[] inventory, ref Item[] current, ref Item[] cache) {
+            current ??= new Item[inventory.Length];
+
+            // Store the current inventory for later
+            for (int i = 0; i < inventory.Length; i++)
+                current[i] = inventory[i];
+
+            // Initialize the cache or restore it to the main inventory
+            if (cache is null) {
+                cache = new Item[inventory.Length];
+
+                for (int i = 0; i < inventory.Length; i++) {
+                    inventory[i] = new Item();
+                    cache[i] = current[i];
                 }
             } else {
-                for (int i = 0; i < 5; i++) {
-                    currentEquipment[i] = Main.LocalPlayer.miscEquips[i];
-                }
-                for (int i = 0; i < 5; i++) {
-                    Main.LocalPlayer.miscEquips[i] = new Item(cachedEquipment[i].type);
-                }
-                for (int i = 0; i < 5; i++) {
-                    cachedEquipment[i] = currentEquipment[i];
+                for (int i = 0; i < inventory.Length; i++) {
+                    inventory[i] = cache[i];
+                    cache[i] = current[i];
                 }
             }
-            /////////////////////////////////////////////////////////////////
-            if (cachedArmor[0] == null) {
-                for (int i = 0; i < 20; i++) {
-                    currentArmor[i] = Main.LocalPlayer.armor[i];
-                }
-                for (int i = 0; i < 20; i++) {
-                    Main.LocalPlayer.armor[i] = new Item(0);
-                }
-                for (int i = 0; i < 20; i++) {
-                    cachedArmor[i] = currentArmor[i];
-                }
-            } else {
-                for (int i = 0; i < 20; i++) {
-                    currentArmor[i] = Main.LocalPlayer.armor[i];
-                }
-                for (int i = 0; i < 20; i++) {
-                    Main.LocalPlayer.armor[i] = new Item(cachedArmor[i].type);
-                }
-                for (int i = 0; i < 20; i++) {
-                    cachedArmor[i] = currentArmor[i];
-                }
-            }
-
-            
-            
-            
         }
 
 
         public override void SaveData(TagCompound tag)
-            {
-                tag["CachedInv"] = cachedInventory.ToList();
-                //tag["CachedArmor"] = cachedArmor;
-            }
+        {
+            tag["CachedInv"] = cachedInventory;
+            // tag["CachedArmor"] = cachedArmor;
+            // tag["CachedEquips"] = cachedEquipment;
+        }
 
         public override void LoadData(TagCompound tag)
-            {
-                cachedInventory = tag.GetList<Item>("CachedInv").ToArray();
-                //cachedArmor = tag.Get<Item[]>("CachedArmor");
-            }
+        {
+            cachedInventory = tag.Get<Item[]>("CachedInv");
+            // cachedArmor = tag.Get<Item[]>("CachedArmor");
+            // cachedEquipment = tag.Get<Item[]>("CachedEquips");
+        }
     }
 }

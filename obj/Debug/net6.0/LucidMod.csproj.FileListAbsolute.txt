@@ -1,0 +1,5 @@
+c:\Users\neddi\Documents\My Games\Terraria\tModLoader\ModSources\LucidMod\obj\Debug\net6.0\LucidMod.csproj.AssemblyReference.cache
+c:\Users\neddi\Documents\My Games\Terraria\tModLoader\ModSources\LucidMod\obj\Debug\net6.0\LucidMod.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\neddi\Documents\My Games\Terraria\tModLoader\ModSources\LucidMod\obj\Debug\net6.0\LucidMod.AssemblyInfoInputs.cache
+c:\Users\neddi\Documents\My Games\Terraria\tModLoader\ModSources\LucidMod\obj\Debug\net6.0\LucidMod.AssemblyInfo.cs
+c:\Users\neddi\Documents\My Games\Terraria\tModLoader\ModSources\LucidMod\obj\Debug\net6.0\LucidMod.csproj.CoreCompileInputs.cache

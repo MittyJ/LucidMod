@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "M8dpD2b5coc=",
+  "dgSpecHash": "G91HcXwy+1MQfH04495N7Y+D3y2QXGw5n4U82751sR++vcWFnIm0piZGP7zfmRNK3Yytos9dXbJeCxEGcVhT8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\neddi\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\LucidMod\\LucidMod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\neddi\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512",
-    "C:\\Users\\neddi\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.32\\microsoft.netcore.app.ref.6.0.32.nupkg.sha512",
     "C:\\Users\\neddi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.32\\microsoft.windowsdesktop.app.ref.6.0.32.nupkg.sha512",
+    "C:\\Users\\neddi\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.32\\microsoft.netcore.app.ref.6.0.32.nupkg.sha512",
     "C:\\Users\\neddi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.32\\microsoft.aspnetcore.app.ref.6.0.32.nupkg.sha512"
   ],
   "logs": []

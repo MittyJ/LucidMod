@@ -78,9 +78,26 @@ namespace LucidMod.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (!firstButton) {
-				SubworldSystem.Exit();
+				bool equipmentEmpty = true;
+				for (int i = 0; i < 20; i++) {
+					if (Main.LocalPlayer.armor[i].type != 0) {
+						equipmentEmpty = false;
+					}
+				}
+				for (int i = 0; i < 5; i++) {
+					if (Main.LocalPlayer.miscEquips[i].type != 0) {
+						equipmentEmpty = false;
+					}
+				}
+				if (equipmentEmpty) {
+					SubworldSystem.Exit();
+				} else {
+					Main.npcChatText = "You must store your armor, accessories, and equipment in your inventory before leaving";
+				}
+				
 			}
-			if (SubworldSystem.IsActive<LucidSubworld>()) {
+			if (firstButton) {
+				if (SubworldSystem.IsActive<LucidSubworld>()) {
 				if (!equipmentGiven) {
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<MonasticStaff>());
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, 3097);
@@ -90,8 +107,26 @@ namespace LucidMod.NPCs
 					Main.npcChatText = "I have already given you my equipment";
 				}
 			}  else {
-				SubworldSystem.Enter<LucidSubworld>();
+				bool equipmentEmpty = true;
+				for (int i = 0; i < 20; i++) {
+					if (Main.LocalPlayer.armor[i].type != 0) {
+						equipmentEmpty = false;
+					}
+				}
+				for (int i = 0; i < 5; i++) {
+					if (Main.LocalPlayer.miscEquips[i].type != 0) {
+						equipmentEmpty = false;
+					}
+				}
+				if (equipmentEmpty) {
+					SubworldSystem.Enter<LucidSubworld>();
+				} else {
+					Main.npcChatText = "You cannot ponder while wearing armor, equipment, accessories, or vanities. Leave your attachment to this world behind";
+				}
+				
 			}
+			}
+			
 		}
 
 		public override void SaveData(TagCompound tag) {
