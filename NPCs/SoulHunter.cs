@@ -28,8 +28,8 @@ namespace LucidMod.NPCs
 			NPC.height = 40;
 			NPC.aiStyle = 7;
 			NPC.damage = 10;
-			NPC.defense = 15;
-			NPC.lifeMax = 250;
+			NPC.defense = 200;
+			NPC.lifeMax = 10000;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0.5f;
@@ -51,7 +51,7 @@ namespace LucidMod.NPCs
                 case 1:
                     return "This place isn't physical, anyone enlightened enough can access it from the physical world";
                 case 2:
-                    return "While the Lucid Jungle is not a real place, it is far from a figment of the imagination";
+                    return "You must urgently talk to the Old Philosopher. Legend says he resides in the sky";
             }
             return "Hello I am Chenezald, my chat is broken";
 		}
@@ -67,7 +67,7 @@ namespace LucidMod.NPCs
 				bool questComplete = false;
 				int slot = -1;
 				for (int i = 0; i < 59; i++) {
-					if (Main.LocalPlayer.inventory[i].type == ModContent.ItemType<PhilospherToken>()) {
+					if (Main.LocalPlayer.inventory[i].type == ModContent.ItemType<PhilosopherToken>()) {
 						if (Main.LocalPlayer.inventory[i].stack >= 5) {
 							questComplete = true;
 							slot = i;

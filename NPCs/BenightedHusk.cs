@@ -1,8 +1,9 @@
+using LucidMod.Content.Subworlds;
 using LucidMod.Items;
+using SubworldLibrary;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace LucidMod.NPCs
 {
@@ -20,6 +21,7 @@ namespace LucidMod.NPCs
 
 		public override void SetDefaults() {
 			NPC.width = 18;
+			NPC.alpha = 100;
 			NPC.height = 40;
 			NPC.damage = 14;
 			NPC.defense = 6;
@@ -35,12 +37,18 @@ namespace LucidMod.NPCs
 		}
 
         public override void OnKill() {
-			Item.NewItem(NPC.GetSource_Death(), NPC.Center, ModContent.ItemType<PhilospherToken>(), 1, true);
+			int num = Main.rand.Next(6);
+			if (num == 1) {
+				Item.NewItem(NPC.GetSource_Death(), NPC.Center, ModContent.ItemType<PhilosopherToken>(), 1, true);
+			}
 		}
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
 			// Can only spawn in the ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
-			return SpawnCondition.OverworldNightMonster.Chance * 2f;
+			if (SubworldSystem.IsActive<LucidSubworld>()) {
+				return 2f;
+			}
+			return 0;
 		}
     }
 }

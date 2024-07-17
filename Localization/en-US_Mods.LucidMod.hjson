@@ -3,42 +3,66 @@
 Items: {
 	Tester: {
 		DisplayName: Tester
-		Tooltip: ""
+		Tooltip: "You are not suppose to have this item"
 	}
 
 	Tingler: {
 		DisplayName: Tingler
-		Tooltip: ""
+		Tooltip: "You are not suppose to have this item"
 	}
 
 	Zald: {
 		DisplayName: Zald
-		Tooltip: ""
+		Tooltip: "You are not suppose to have this item"
 	}
 
 	InsigniaOfRenezald: {
-		Tooltip: ""
+		Tooltip: '''
+					Increases Monastic Damage by 1%
+					Allows the user flight
+					Greatly increases max speed
+					'''
 		DisplayName: Insignia Of Renezald
 	}
 
 	PhilospherToken: {
 		DisplayName: Philospher Token
-		Tooltip: ""
+		Tooltip: "An old currency used by ancient philosophers"
 	}
 
 	MonasticRobe: {
 		DisplayName: Monastic Robe
-		Tooltip: ""
+		Tooltip: "6% increased Monastic Damage"
 	}
 
 	MonasticHood: {
 		DisplayName: Monastic Hood
-		Tooltip: ""
+		Tooltip: "6% increased Monastic Damage"
 	}
 
 	MonasticLeggings: {
 		DisplayName: Monastic Leggings
-		Tooltip: ""
+		Tooltip: "6% increased Monastic Damage"
+	}
+
+	MonasticStaff: {
+		DisplayName: Monastic Staff
+		Tooltip: "An old staff used by a long forgotten monk"
+	}
+
+	UnboundSoul: {
+		DisplayName: Unbound Soul
+		Tooltip: "This soul belongs to somebody who fully detached themselves from the physical world"
+	}
+
+	PhilosophorToken: {
+		DisplayName: Philosophor Token
+		Tooltip: "An old currency used by ancient philosophers"
+	}
+
+	PhilosopherToken: {
+		DisplayName: Philosopher Token
+		Tooltip: "An old currency used by ancient philosophers"
 	}
 }
 
@@ -120,6 +144,8 @@ NPCs: {
 			LikeNPC_Princess: I like {NPCName}.
 			Princess_LovesNPC: I like {NPCName}.
 		}
+
+		Census.SpawnCondition: Conditions unknown
 	}
 
 	OldPhilosopher: {
@@ -135,6 +161,8 @@ NPCs: {
 			LikeNPC_Princess: I like {NPCName}.
 			Princess_LovesNPC: I like {NPCName}.
 		}
+
+		Census.SpawnCondition: Conditions unknown
 	}
 
 	SoulHunter: {
@@ -150,7 +178,11 @@ NPCs: {
 			LikeNPC_Princess: I like {NPCName}.
 			Princess_LovesNPC: I like {NPCName}.
 		}
+
+		Census.SpawnCondition: Conditions unknown
 	}
+
+	CorpselessEgo.DisplayName: Corpseless Ego
 }
 
 Projectiles: {
@@ -166,3 +198,10 @@ Projectiles: {
 }
 
 DamageClasses.MonasticDamage.DisplayName: Monastic Damage
+
+Biomes: {
+	LucidJungleBiome: {
+		DisplayName: Lucid Jungle Biome
+		TownNPCDialogueName: the Lucid Jungle Biome
+	}
+}

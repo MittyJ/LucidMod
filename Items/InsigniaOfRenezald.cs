@@ -18,26 +18,20 @@ namespace LucidMod.Items
 			// Fly time: 180 ticks = 3 seconds
 			// Fly speed: 9
 			// Acceleration multiplier: 2.5
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(9000, 16f, 6f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(140, 9f, 2.5f);
 		}
 
 		public override void SetDefaults()
 		{
-			Item.width = 40;
-			Item.height = 40;
+			Item.width = 28;
+			Item.height = 28;
 			Item.accessory = true;
-		}
-
-		public override void AddRecipes()
-		{
-			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.Register();
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual) {
 			player.GetDamage(ModContent.GetInstance<MonasticDamage>()) *= 1 + MonasticDamageModifier / 100f;
+			player.maxRunSpeed *= 1.75f;
+			player.runAcceleration *= 1.1f;
 		}
 
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,

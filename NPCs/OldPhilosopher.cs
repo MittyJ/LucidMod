@@ -9,6 +9,7 @@ namespace LucidMod.NPCs
 	[AutoloadHead]
 	public class OldPhilosopher : ModNPC
 	{
+		int chatIndex = 1;
 
 		InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 		public override void SetStaticDefaults() {
@@ -26,7 +27,7 @@ namespace LucidMod.NPCs
 			NPC.aiStyle = 7;
 			NPC.damage = 10;
 			NPC.defense = 15;
-			NPC.lifeMax = 250;
+			NPC.lifeMax = 10000;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0.5f;
@@ -41,30 +42,36 @@ namespace LucidMod.NPCs
 		}
 
 		public override string GetChat() {
-            int num = Main.rand.Next(2);
-            switch (num) {
-                case 0:
-                    return "Welcome to the Lucid Jungle, I am Renezald";
-                case 1:
-                    return "This place isn't physical, anyone enlightened enough can access it from the physical world";
-                case 2:
-                    return "While the Lucid Jungle is not a real place, it is far from a figment of the imagination";
-            }
-            return "Hello I am Renezald, my chat is broken";
+			return "I am Renezald the Old Philosophor. I ask you to assist me in vanquishing a great threat against this realm: Lenezald";
 		}
 
 
 		public override void SetChatButtons(ref string button, ref string button2) { // What the chat buttons are when you open up the chat UI
-			button = "Quest";
-			button2 = "Inquire";
+			button = "Next";
+			button2 = "Quest";
 		}
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (firstButton) {
-				
+				switch (chatIndex) {
+					case 1:
+						chatIndex++;
+						Main.npcChatText = "Lenezald has disturbed the balance of this realm. He is a malicous monk and must be vanquished";
+						break;
+					case 2:
+						chatIndex++;
+						Main.npcChatText = "In order to fight him, you will need proper armor and weaponary. Perhaps some people in this realm can help you with that";
+						break;
+					case 3:
+						chatIndex++;
+						Main.npcChatText = "My quest for you is to go into Lenezald's layer and defeat him; be warned Lenezald is one of the most powerful monks";
+						break;
+					case 4:
+						Main.npcChatText = "Lenezald is so powerful that his layer exists in a realm of his own making. Beware";
+						chatIndex = 0;
+						break;
+				}
 			}
-			}
-
-		
+		}
 	}
 }

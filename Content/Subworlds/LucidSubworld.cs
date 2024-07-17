@@ -37,6 +37,7 @@ namespace LucidMod.Content.Subworlds
             NPC.NewNPC(new EntitySource_SpawnNPC(), 210 * PIXELS_IN_BLOCK, 235 * PIXELS_IN_BLOCK, ModContent.NPCType<SoulHunter>());
             NPC.NewNPC(new EntitySource_SpawnNPC(), 2515 * PIXELS_IN_BLOCK, 265 * PIXELS_IN_BLOCK, ModContent.NPCType<Abbot>());
             NPC.NewNPC(new EntitySource_SpawnNPC(), 1270 * PIXELS_IN_BLOCK, 70 * PIXELS_IN_BLOCK, ModContent.NPCType<OldPhilosopher>());
+            NPC.NewNPC(new EntitySource_SpawnNPC(), 1300 * PIXELS_IN_BLOCK, 290 * PIXELS_IN_BLOCK, ModContent.NPCType<Ponderer>());
         }
 
 		// Sets the time to the middle of the day whenever the subworld loads

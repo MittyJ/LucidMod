@@ -14,7 +14,7 @@ namespace LucidMod
         public LucidMod() => Instance = this;
         public override void Load()
         {
-            PhilospherTokenId = CustomCurrencyManager.RegisterCurrency(new PhilospherTokenCurrency(ModContent.ItemType<PhilospherToken>(), 999, "Philospher Token"));
+            PhilospherTokenId = CustomCurrencyManager.RegisterCurrency(new PhilospherTokenCurrency(ModContent.ItemType<PhilosopherToken>(), 999, "Philospher Token"));
         }
 
     }

@@ -31,13 +31,6 @@ namespace LucidMod.Items
 			Item.shootSpeed = 3;
 		}
 
-		public override void AddRecipes()
-		{
-			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.Register();
-		}
 		
 		public override void UseItemHitbox(Player player, ref Rectangle hitbox, ref bool noHitbox) {
 			noHitbox = false;
