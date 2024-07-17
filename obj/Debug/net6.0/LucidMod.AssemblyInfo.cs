@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LucidMod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1df824f62458b1ceb3906ad90933d1b4fc449b51")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b377d20bfe998ebcc9ea65c4f3a267ee146669d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("LucidMod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LucidMod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

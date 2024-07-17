@@ -17,6 +17,7 @@ namespace LucidMod.NPCs
 	public class Ponderer : ModNPC
 	{
 		bool equipmentGiven = false;
+		Item[] cachedInventory = new Item[59];
 		InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
@@ -32,7 +33,7 @@ namespace LucidMod.NPCs
 			NPC.height = 40;
 			NPC.aiStyle = 7;
 			NPC.damage = 10;
-			NPC.defense = 200;
+			NPC.defense = 1000;
 			NPC.lifeMax = 10000;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
@@ -68,6 +69,7 @@ namespace LucidMod.NPCs
 			
 			if (SubworldSystem.IsActive<LucidSubworld>()) {
 				button = "Equip";
+				button2 = "Return";
 			} else {
 				button = "Ponder";
 			}
@@ -76,7 +78,7 @@ namespace LucidMod.NPCs
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop) {
 			if (!firstButton) {
-				return;
+				SubworldSystem.Exit();
 			}
 			if (SubworldSystem.IsActive<LucidSubworld>()) {
 				if (!equipmentGiven) {
@@ -87,9 +89,8 @@ namespace LucidMod.NPCs
 				} else {
 					Main.npcChatText = "I have already given you my equipment";
 				}
-				
-			} else {
-				SubworldSystem.Enter<LucidSubworld>();	
+			}  else {
+				SubworldSystem.Enter<LucidSubworld>();
 			}
 		}
 

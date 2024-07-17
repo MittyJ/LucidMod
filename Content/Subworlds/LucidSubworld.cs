@@ -50,14 +50,13 @@ namespace LucidMod.Content.Subworlds
 
         public override void OnEnter()
         {
-            
-
+            InventorySaveSystem.SwapInventory();
         }
 
 
         public override void OnExit()
         {
-
+			InventorySaveSystem.SwapInventory();
         }
 
 		

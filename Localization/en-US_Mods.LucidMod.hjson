@@ -3,66 +3,67 @@
 Items: {
 	Tester: {
 		DisplayName: Tester
-		Tooltip: "You are not suppose to have this item"
+		Tooltip: You are not suppose to have this item
 	}
 
 	Tingler: {
 		DisplayName: Tingler
-		Tooltip: "You are not suppose to have this item"
+		Tooltip: You are not suppose to have this item
 	}
 
 	Zald: {
 		DisplayName: Zald
-		Tooltip: "You are not suppose to have this item"
+		Tooltip: You are not suppose to have this item
 	}
 
 	InsigniaOfRenezald: {
-		Tooltip: '''
-					Increases Monastic Damage by 1%
-					Allows the user flight
-					Greatly increases max speed
-					'''
+		Tooltip:
+			'''
+			Increases Monastic Damage by 1%
+			Allows the user flight
+			Greatly increases max speed
+			'''
 		DisplayName: Insignia Of Renezald
 	}
 
 	PhilospherToken: {
 		DisplayName: Philospher Token
-		Tooltip: "An old currency used by ancient philosophers"
+		Tooltip: An old currency used by ancient philosophers
 	}
 
 	MonasticRobe: {
 		DisplayName: Monastic Robe
-		Tooltip: "6% increased Monastic Damage"
+		Tooltip: 6% increased Monastic Damage
 	}
 
 	MonasticHood: {
 		DisplayName: Monastic Hood
-		Tooltip: "6% increased Monastic Damage"
+		Tooltip: 6% increased Monastic Damage
 	}
 
 	MonasticLeggings: {
 		DisplayName: Monastic Leggings
-		Tooltip: "6% increased Monastic Damage"
+		Tooltip: 6% increased Monastic Damage
 	}
 
 	MonasticStaff: {
 		DisplayName: Monastic Staff
-		Tooltip: "An old staff used by a long forgotten monk"
+		Tooltip: An old staff used by a long forgotten monk
 	}
 
 	UnboundSoul: {
 		DisplayName: Unbound Soul
-		Tooltip: "This soul belongs to somebody who fully detached themselves from the physical world"
+		Tooltip: This soul belongs to somebody who fully detached themselves from the physical world
 	}
 
 	PhilosophorToken: {
 		DisplayName: Philosophor Token
-		Tooltip: "An old currency used by ancient philosophers"
+		Tooltip: An old currency used by ancient philosophers
 	}
 
 	PhilosopherToken: {
 		DisplayName: Philosopher Token
-		Tooltip: "An old currency used by ancient philosophers"
+		Tooltip: An old currency used by ancient philosophers
 	}
 }
 
