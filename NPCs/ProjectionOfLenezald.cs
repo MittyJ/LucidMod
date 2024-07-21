@@ -418,10 +418,7 @@ namespace LucidMod.NPCs
 		//Teleports randomally around the player and shoots a blade their way
 		public void teleportAndBlade(Player player) {
 			int playerDistanceTeleport = 20 * PIXELS_IN_BLOCK;
-			int sign = 1;
-			if (Main.rand.NextBool() == true) {
-				sign = -1;
-			}
+
 			NPC.Teleport(new Vector2(player.Center.X + (PIXELS_IN_BLOCK * Main.rand.Next(-25, 25)) + playerDistanceTeleport, player.Center.Y + (PIXELS_IN_BLOCK * Main.rand.Next(-15, 15)) + playerDistanceTeleport), 1);
 			shootPlayerBlade(player);
 		}
