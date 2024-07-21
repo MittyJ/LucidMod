@@ -100,6 +100,7 @@ namespace LucidMod.NPCs
 				if (SubworldSystem.IsActive<LucidSubworld>()) {
 				if (!equipmentGiven) {
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<MonasticStaff>());
+					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<MirrorOfReturn>());
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, 3097);
 					//Shield of Cuthulu
 					equipmentGiven = true;

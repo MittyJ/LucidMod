@@ -65,6 +65,21 @@ Items: {
 		DisplayName: Philosopher Token
 		Tooltip: An old currency used by ancient philosophers
 	}
+
+	InsigniaOfLenezald: {
+		DisplayName: Insignia Of Lenezald
+		Tooltip: ""
+	}
+
+	MirrorOfReturn: {
+		DisplayName: Mirror Of Return
+		Tooltip: ""
+	}
+
+	RenezaldStaff: {
+		DisplayName: Renezald's Staff of the 6th Mage
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -184,6 +199,7 @@ NPCs: {
 	}
 
 	CorpselessEgo.DisplayName: Corpseless Ego
+	ProjectionOfLenezald.DisplayName: Projection Of Lenezald
 }
 
 Projectiles: {
@@ -196,6 +212,7 @@ Projectiles: {
 	LenezaldStarWrath.DisplayName: Lenezald Star Wrath
 	SpecialLenezaldSword.DisplayName: Special Lenezald Sword
 	TinglerBeam.DisplayName: Tingler Beam
+	MonkFlare.DisplayName: Monk Flare
 }
 
 DamageClasses.MonasticDamage.DisplayName: Monastic Damage

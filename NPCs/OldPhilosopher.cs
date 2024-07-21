@@ -3,6 +3,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using LucidMod.Content.Systems;
+using SubworldLibrary;
+using LucidMod.Content.Subworlds;
+using Terraria.DataStructures;
+using LucidMod.Items;
+using Terraria.ModLoader.IO;
 
 namespace LucidMod.NPCs
 {
@@ -10,6 +15,7 @@ namespace LucidMod.NPCs
 	public class OldPhilosopher : ModNPC
 	{
 		int chatIndex = 1;
+		bool hasGottenLenezald = false;
 
 		InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 		public override void SetStaticDefaults() {
@@ -71,7 +77,28 @@ namespace LucidMod.NPCs
 						chatIndex = 0;
 						break;
 				}
+			} else {
+				if (!hasGottenLenezald) {
+					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<InsigniaOfLenezald>());
+					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<RenezaldStaff>());
+					Main.npcChatText = "You will need these for the fight. Click 'Quest' again when you are ready to go to his lair";
+					hasGottenLenezald = true;
+				} else {
+					SubworldSystem.Enter<LenezaldSubworld>();
+				}
+					
 			}
 		}
+
+		public override void SaveData(TagCompound tag) {
+			if (hasGottenLenezald) {
+				tag["hasGottenLenezald"] = hasGottenLenezald;
+			}
+		}
+
+		public override void LoadData(TagCompound tag) {
+			hasGottenLenezald = tag.GetBool("hasGottenLenezald");
+		}
+		
 	}
 }

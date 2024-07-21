@@ -1,9 +1,7 @@
 using System;
-using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 using LucidMod.Content.Projectiles;
 using Microsoft.Xna.Framework;
-using Steamworks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Graphics.CameraModifiers;
@@ -15,7 +13,7 @@ namespace LucidMod.NPCs
 	//One block = 16 pixels
 	//Screen dimensions: 70 Blocks in height 120 blocks in width
     [AutoloadBossHead]
-    public class Lenezald : ModNPC
+    public class ProjectionOfLenezald : ModNPC
     {
 		private enum BossPhase {
 			FIRST,
@@ -28,6 +26,9 @@ namespace LucidMod.NPCs
 		private int firstPhaseTimer = 0;
 		private int secondPhaseTimer = 0;
 		private int desperationTimer = 0;
+
+		private Vector2 arenaCenter = new Vector2(138 * PIXELS_IN_BLOCK, 97 * PIXELS_IN_BLOCK);
+		//Arena left x = 88, right x = 189. Top = 47 bottom = 147
 
 		private int dashTimer = 0;
 		BossPhase bossPhase = BossPhase.FIRST;
@@ -106,7 +107,9 @@ namespace LucidMod.NPCs
 				Main.instance.CameraModifiers.Add(modifier);
 			}
 		}
-
+		
+		//Arena left x = 88, right x = 189. Top = 47 bottom = 147
+		//That is the solid block on the edge not the air
         public override void AI()
         {
             // This should almost always be the first code in AI() as it is responsible for finding the proper player target
@@ -116,6 +119,15 @@ namespace LucidMod.NPCs
             }
 
             Player player = Main.player[NPC.target];
+
+			if (player.dead)
+            {
+                // If the targeted player is dead, flee
+                NPC.velocity.Y -= 0.4f;
+                // This method makes it so when the boss is in "despawn range" (outside of the screen), it despawns in 10 ticks
+                NPC.EncourageDespawn(10);
+				return;
+			}
 
             if (NPC.life < NPC.lifeMax * 0.6 && bossPhase == BossPhase.FIRST)
             {
@@ -144,14 +156,6 @@ namespace LucidMod.NPCs
             }
 
 
-            if (player.dead)
-            {
-                // If the targeted player is dead, flee
-                NPC.velocity.Y -= 0.04f;
-                // This method makes it so when the boss is in "despawn range" (outside of the screen), it despawns in 10 ticks
-                NPC.EncourageDespawn(10);
-                return;
-            }
         }
 
         //Phase Methods:
@@ -282,22 +286,22 @@ namespace LucidMod.NPCs
 
 			for (int i = 0; i < 3; i++) {
 				int ran = Main.rand.Next(-50, 50);
-					Projectile.NewProjectile(entitySource, new Vector2(player.Center.X + (ran * PIXELS_IN_BLOCK), player.Center.Y - (30 * PIXELS_IN_BLOCK)), new Vector2(0, 1), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (ran * PIXELS_IN_BLOCK), arenaCenter.Y - (60 * PIXELS_IN_BLOCK)), new Vector2(0, 1), type, damage, 0f, Main.myPlayer);
 			}
 
 			for (int i = 0; i < 3; i++) {
 				int ran = Main.rand.Next(-50, 50);
-					Projectile.NewProjectile(entitySource, new Vector2(player.Center.X + (ran * PIXELS_IN_BLOCK), player.Center.Y + (30 * PIXELS_IN_BLOCK)), new Vector2(0, -1), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (ran * PIXELS_IN_BLOCK), arenaCenter.Y + (60 * PIXELS_IN_BLOCK)), new Vector2(0, -1), type, damage, 0f, Main.myPlayer);
 			}
 
 			for (int i = 0; i < 3; i++) {
 				int ran = Main.rand.Next(-25, 25);
-					Projectile.NewProjectile(entitySource, new Vector2(player.Center.X + (60 * PIXELS_IN_BLOCK), player.Center.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(-1, 0), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (60 * PIXELS_IN_BLOCK), arenaCenter.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(-1, 0), type, damage, 0f, Main.myPlayer);
 			}
 
 			for (int i = 0; i < 3; i++) {
 				int ran = Main.rand.Next(-25, 25);
-					Projectile.NewProjectile(entitySource, new Vector2(player.Center.X - (60 * PIXELS_IN_BLOCK), player.Center.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(1, 0), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X - (60 * PIXELS_IN_BLOCK), arenaCenter.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(1, 0), type, damage, 0f, Main.myPlayer);
 			}
 		}
 
@@ -401,10 +405,10 @@ namespace LucidMod.NPCs
 				int type = randomizeProjectile();
 				int damage = NPC.damage / 2;
 				var entitySource = NPC.GetSource_FromAI();
-				Projectile.NewProjectile(entitySource, new Vector2(player.Center.X, player.Center.Y - 376), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
+				Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X, arenaCenter.Y - 376), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
 				for (int i = 1; i < 10; i++) {
-					Projectile.NewProjectile(entitySource, new Vector2(player.Center.X + (11 * PIXELS_IN_BLOCK * i) + shift, player.Center.Y - 376), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
-					Projectile.NewProjectile(entitySource, new Vector2(player.Center.X + (-11* PIXELS_IN_BLOCK * i) - shift, player.Center.Y - 376), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (11 * PIXELS_IN_BLOCK * i) + shift, arenaCenter.Y - 45 * PIXELS_IN_BLOCK), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (-11* PIXELS_IN_BLOCK * i) - shift, arenaCenter.Y - 45 * PIXELS_IN_BLOCK), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
 				}
 
 			}
@@ -449,7 +453,7 @@ namespace LucidMod.NPCs
 			}
 
 			int opening = Main.rand.Next(6);
-			for (int i = 0; i < 9; i++) {
+			for (int i = 0; i < 13; i++) {
 				if (NPC.HasValidTarget && mainTimer == 0 && Main.netMode != NetmodeID.MultiplayerClient) {
 				// Spawn projectile randomly below player, based on horizontal velocity to make kiting harder, starting velocity 1f upwards
 				// (The projectiles accelerate from their initial velocity)
@@ -460,11 +464,11 @@ namespace LucidMod.NPCs
 
 					if (i != opening) {
 						if (left) {
-							Projectile.NewProjectile(entitySource, new Vector2(NPC.Center.X, NPC.Center.Y + (i * 5 * PIXELS_IN_BLOCK)), new Vector2(-3, 0), type, damage, 0f, Main.myPlayer);
-							Projectile.NewProjectile(entitySource, new Vector2(NPC.Center.X, NPC.Center.Y - (i * 5 * PIXELS_IN_BLOCK)), new Vector2(-3, 0), type, damage, 0f, Main.myPlayer);
+							Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (50 * PIXELS_IN_BLOCK), arenaCenter.Y + (i * 5 * PIXELS_IN_BLOCK)), new Vector2(-3, 0), type, damage, 0f, Main.myPlayer);
+							Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (50 * PIXELS_IN_BLOCK), arenaCenter.Y - (i * 5 * PIXELS_IN_BLOCK)), new Vector2(-3, 0), type, damage, 0f, Main.myPlayer);
 						} else {
-							Projectile.NewProjectile(entitySource, new Vector2(NPC.Center.X, NPC.Center.Y + (i * 5 * PIXELS_IN_BLOCK)), new Vector2(3, 0), type, damage, 0f, Main.myPlayer);
-							Projectile.NewProjectile(entitySource, new Vector2(NPC.Center.X, NPC.Center.Y - (i * 5 * PIXELS_IN_BLOCK)), new Vector2(3, 0), type, damage, 0f, Main.myPlayer);
+							Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X - (50 * PIXELS_IN_BLOCK), arenaCenter.Y + (i * 5 * PIXELS_IN_BLOCK)), new Vector2(3, 0), type, damage, 0f, Main.myPlayer);
+							Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X - (50 * PIXELS_IN_BLOCK), arenaCenter.Y - (i * 5 * PIXELS_IN_BLOCK)), new Vector2(3, 0), type, damage, 0f, Main.myPlayer);
 						}
 					}
 				

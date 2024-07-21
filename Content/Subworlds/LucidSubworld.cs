@@ -21,7 +21,6 @@ namespace LucidMod.Content.Subworlds
 
     public const int PIXELS_IN_BLOCK = 16;
 
-	public InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 
 	public override bool ShouldSave => true;
 	public override bool NoPlayerSaving => false;
@@ -44,12 +43,13 @@ namespace LucidMod.Content.Subworlds
 		public override void OnLoad()
 		{
 			Main.dayTime = true;
-			Main.time = 27000;
+			Main.time = 0;
         
 		}
 
         public override void OnEnter()
         {
+            SubworldSystem.noReturn = true;
             Main.LocalPlayer.GetModPlayer<InventorySaveSystem>().SwapInventory();
         }
 

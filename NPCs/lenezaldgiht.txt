@@ -1,52 +1,16 @@
-Attacks: 
-Dash and throw 5 sword
-Bullet Hell
-Dash
-Circle Blade
-Underneath Blade
-Perpendicular Blade + Diagonal Blade
-sky blade attack
-teleport and blade
-sword wall
+Attacks:
 
+(Flighs in a figure 8 patern)
 
 Phase 1:
-    Dash + Perpendicular Blade + Diagonal Blade
-    sky blade attack
-    (slow teleport and blade)
-    sword wall
+sword from ground
+sword barriage like scal
+sword attacks from old boss
+
 Phase 2:
-    Bullet Hell
-    Dash and throw 5 sword
-    sword wall
-    Circle Blade
-    Underneath Blade
+Bullet Hell
+sword from ground
+sword barriage like scal
 
 Desperation:
-    Insane fast Teleport and blade
-
-
-Order:
-    Phase 1:
-    Dash + Perpendicular Blade + Diagonal Blade x 3
-    sky blade attack * 4
-    (slow teleport and blade) * 3
-    sword wall * 4
-
-    Phase 2:
-        Bullet Hell ~ 15 seconds
-        Dash and throw 5 sword * 5
-        sword wall * 1
-        Circle Blade * 10
-
-Improve:
-
-Projecitle sword hit boxes
-Space attacks better
-fix blades spawing on top of each other
-fix circle blade attack(Fly instead of teleport)
-fix teleport sound
-slowly drain lenezald health during Desperation
-Doesn't despawn in Desperation
-
-        
+Phase 2 but faster
