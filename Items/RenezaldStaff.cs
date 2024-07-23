@@ -13,7 +13,7 @@ namespace LucidMod.Items
     {
         public override void SetDefaults()
 		{
-			Item.damage = 14;
+			Item.damage = 21;
 			Item.DamageType = ModContent.GetInstance<MonasticDamage>();
 			Item.useTime = 10;
 			Item.width = 52;

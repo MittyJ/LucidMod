@@ -25,10 +25,13 @@ namespace LucidMod.Items
 		}
 
         public override bool CanUseItem(Player player) {
+            if (NPC.AnyNPCs(ModContent.NPCType<ProjectionOfLenezald>())) {
+                return false;
+            }
 			if (SubworldSystem.IsActive<LenezaldSubworld>()) {
                 return true;
             } else {
-                Main.NewText("You can only awaken Lenezald in his layer");
+                Main.NewText("You can only awaken Lenezald in his layer (Talk to the Old Philosopher and accept his quest)");
                 return false;
             }
 			

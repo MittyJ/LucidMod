@@ -13,7 +13,7 @@ namespace LucidMod.NPCs
 	{
 		//Quest: Kill a miniboss, gain wings
 
-
+		bool questAsked = false;
 		InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
@@ -75,12 +75,13 @@ namespace LucidMod.NPCs
 						}
 					}
 				}
-				if (questComplete) {
+				if (questComplete && questAsked) {
 					Main.npcChatText = "Thank you! For your help I can give you the Insignia of Renezald";
 					Main.LocalPlayer.inventory[slot].stack -= 1;
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<InsigniaOfRenezald>()); 
 				} else {
-					Main.npcChatText = "Aquire me an Unbound Soul by defeating a Corpseless Ego, and I will aid you greatly in your journey";
+					Main.npcChatText = "Aquire me an Unbound Soul by defeating a Corpseless Ego, and I will aid you greatly in your journey. Corpseless egos awaken at night";
+					questAsked = true;
 				}
 			} else {
 				Main.npcChatText = "Corpseless Egos are those who have completely detached themselves from the physical world, only existing in this realm";

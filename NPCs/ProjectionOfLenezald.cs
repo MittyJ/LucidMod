@@ -56,9 +56,9 @@ namespace LucidMod.NPCs
         public override void SetDefaults() {
 			NPC.width = 40;
 			NPC.height = 56;
-			NPC.damage = 50;
+			NPC.damage = 35;
 			NPC.defense = 10;
-			NPC.lifeMax = 20000;
+			NPC.lifeMax = 14000;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0f;
@@ -83,6 +83,11 @@ namespace LucidMod.NPCs
 			if (!Main.dedServ) {
 				Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/LenezaldMusic");
 			}
+		}
+
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float 	balance, float bossAdjustment) {
+			NPC.lifeMax = (int)(NPC.lifeMax * .8f * bossAdjustment * balance * numPlayers);
+            NPC.damage = (int)(NPC.damage * .4f);
 		}
 
 
@@ -166,26 +171,26 @@ namespace LucidMod.NPCs
 				teleport(player);
 			}
 			
-			for (int i = 0; i < 7; i++) {
+			for (int i = 0; i < 4; i++) {
 				if (firstPhaseTimer == (i + 1) * FRAME_TO_SECONDS) {
 					await dashAtPlayer(player);
 					diagonalBladeAttack(player);
 					perpendicularBladeAttack(player);
 				}
 			}
-			//8 seconds passed
+			//5 seconds passed
 
 
 			for (int i = 0; i < 3; i++) {
-				if (firstPhaseTimer == (i + 8) * FRAME_TO_SECONDS) {
+				if (firstPhaseTimer == (i + 5) * FRAME_TO_SECONDS) {
 					teleportAndBlade(player);
 				}
 			}
-			//11 seconds passed
+			//8 seconds passed
 
 
-			for (int i = 0; i < 4; i++) {
-				if (firstPhaseTimer == (i * 2 + 11) * FRAME_TO_SECONDS) {
+			for (int i = 0; i < 2; i++) {
+				if (firstPhaseTimer == (i * 2 + 8) * FRAME_TO_SECONDS) {
 					if (i % 2 == 0) {
 						swordWall(player, false);
 					} else {
@@ -194,35 +199,36 @@ namespace LucidMod.NPCs
 					
 				}
 			}
-			//17 seconds passed
+			//11 seconds passed
 
 
-			if (firstPhaseTimer > 17.5 * FRAME_TO_SECONDS) {
+			if (firstPhaseTimer > 11 * FRAME_TO_SECONDS) {
 				firstPhaseTimer = 0;
 			}
 		}
 
 		private void secondPhase(Player player) {
-			secondPhaseTimer++;
-			for (int i = 0; i < 15; i++) {
+			secondPhaseTimer++;		
+ 
+ 			for (int i = 0; i < 15; i++) {
 				if (secondPhaseTimer == (1 + i) * FRAME_TO_SECONDS) {
 					bulletHell(player);
 				}
 			}
-			//16 seconds passsed
+			//19 seconds passsed
 
 			for (int i = 0; i < 5; i++) {
-				if (secondPhaseTimer == (17 + (i * 2)) * FRAME_TO_SECONDS) {
+				if (secondPhaseTimer == (20 + (i * 2)) * FRAME_TO_SECONDS) {
 					if (i % 2 == 0) {
 						skyBladeAttack(player, 0);
 					} else {
-						skyBladeAttack(player, 2);
+						skyBladeAttack(player, 6 * PIXELS_IN_BLOCK);
 					}
 				}
 			}
-			//23 Seconds passed
+			//30 Seconds passed
 			for (int i = 0; i < 4; i++) {
-				if (secondPhaseTimer == ((26 + i) * FRAME_TO_SECONDS)) {
+				if (secondPhaseTimer == (i * 2 + 30) * FRAME_TO_SECONDS) {
 					bool left = false;
 					if (i % 2 == 0) {
 						left = true;
@@ -232,7 +238,7 @@ namespace LucidMod.NPCs
 			}
 			//34 seconds passed
 
-			for (int i = 1; i < 21; i++) {
+			for (int i = 1; i < 10; i++) {
 				if (secondPhaseTimer == (36 + i) * FRAME_TO_SECONDS) {
 					teleport(player);
 					circleBladeAttack(player);
@@ -240,7 +246,7 @@ namespace LucidMod.NPCs
 			}
 			//46 seconds passed
 
-			if (secondPhaseTimer > 56 * FRAME_TO_SECONDS) {
+			if (secondPhaseTimer > 48 * FRAME_TO_SECONDS) {
 				secondPhaseTimer = 0;
 			}
 		}
@@ -280,28 +286,41 @@ namespace LucidMod.NPCs
 
 		//Summons a bullet Hell
 		private void bulletHell(Player player) {
+			NPC.Teleport(new Vector2(arenaCenter.X , arenaCenter.Y), 1);
 			int type = randomizeProjectile();
 			int damage = NPC.damage / 2;
 			var entitySource = NPC.GetSource_FromAI();
 
-			for (int i = 0; i < 3; i++) {
-				int ran = Main.rand.Next(-50, 50);
-					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (ran * PIXELS_IN_BLOCK), arenaCenter.Y - (60 * PIXELS_IN_BLOCK)), new Vector2(0, 1), type, damage, 0f, Main.myPlayer);
+			int attackPlayer = Main.rand.Next(4);
+
+			if (attackPlayer == 1) {
+				Projectile.NewProjectile(entitySource, new Vector2(player.Center.X, arenaCenter.Y - (60 * PIXELS_IN_BLOCK)), new Vector2(0, 1.5f), type, damage, 0f, Main.myPlayer);
+			} else if (attackPlayer == 2) {
+				Projectile.NewProjectile(entitySource, new Vector2(player.Center.X, arenaCenter.Y + (60 * PIXELS_IN_BLOCK)), new Vector2(0, -1.5f), type, damage, 0f, Main.myPlayer);
+			} else if (attackPlayer == 3) {
+				Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X - (60 * PIXELS_IN_BLOCK), player.Center.Y), new Vector2(1.5f, 0), type, damage, 0f, Main.myPlayer);
+			} else if (attackPlayer == 4) {
+				Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (60 * PIXELS_IN_BLOCK), player.Center.Y), new Vector2(-1.5f, 0), type, damage, 0f, Main.myPlayer);
 			}
 
 			for (int i = 0; i < 3; i++) {
 				int ran = Main.rand.Next(-50, 50);
-					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (ran * PIXELS_IN_BLOCK), arenaCenter.Y + (60 * PIXELS_IN_BLOCK)), new Vector2(0, -1), type, damage, 0f, Main.myPlayer);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (ran * PIXELS_IN_BLOCK), arenaCenter.Y - (60 * PIXELS_IN_BLOCK)), new Vector2(0, 1.5f), type, damage, 0f, Main.myPlayer);
 			}
 
 			for (int i = 0; i < 3; i++) {
-				int ran = Main.rand.Next(-25, 25);
-					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (60 * PIXELS_IN_BLOCK), arenaCenter.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(-1, 0), type, damage, 0f, Main.myPlayer);
+				int ran = Main.rand.Next(-50, 50);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (ran * PIXELS_IN_BLOCK), arenaCenter.Y + (60 * PIXELS_IN_BLOCK)), new Vector2(0, -1.5f), type, damage, 0f, Main.myPlayer);
 			}
 
 			for (int i = 0; i < 3; i++) {
-				int ran = Main.rand.Next(-25, 25);
-					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X - (60 * PIXELS_IN_BLOCK), arenaCenter.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(1, 0), type, damage, 0f, Main.myPlayer);
+				int ran = Main.rand.Next(-50, 50);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (60 * PIXELS_IN_BLOCK), arenaCenter.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(-1.5f, 0), type, damage, 0f, Main.myPlayer);
+			}
+
+			for (int i = 0; i < 3; i++) {
+				int ran = Main.rand.Next(-50, 50);
+					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X - (60 * PIXELS_IN_BLOCK), arenaCenter.Y + (ran * PIXELS_IN_BLOCK)), new Vector2(1.5f, 0), type, damage, 0f, Main.myPlayer);
 			}
 		}
 
@@ -405,7 +424,7 @@ namespace LucidMod.NPCs
 				int type = randomizeProjectile();
 				int damage = NPC.damage / 2;
 				var entitySource = NPC.GetSource_FromAI();
-				Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X, arenaCenter.Y - 376), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
+				Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X, arenaCenter.Y - 45 * PIXELS_IN_BLOCK), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
 				for (int i = 1; i < 10; i++) {
 					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (11 * PIXELS_IN_BLOCK * i) + shift, arenaCenter.Y - 45 * PIXELS_IN_BLOCK), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
 					Projectile.NewProjectile(entitySource, new Vector2(arenaCenter.X + (-11* PIXELS_IN_BLOCK * i) - shift, arenaCenter.Y - 45 * PIXELS_IN_BLOCK), new Vector2(0, 2), type, damage, 0f, Main.myPlayer);
@@ -538,8 +557,8 @@ namespace LucidMod.NPCs
 
 		//Teleports somewhere near the player, but not too close, randomly
 		private void teleport(Player player) {
-			int playerDistanceTeleport = 25 * PIXELS_IN_BLOCK;
-			NPC.Teleport(new Vector2(player.Center.X + (PIXELS_IN_BLOCK * Main.rand.Next(-25, 25)) + playerDistanceTeleport, player.Center.Y + (PIXELS_IN_BLOCK * Main.rand.Next(-15, 15)) + playerDistanceTeleport));
+			int playerDistanceTeleport = 30 * PIXELS_IN_BLOCK;
+			NPC.Teleport(new Vector2(player.Center.X + (PIXELS_IN_BLOCK * Main.rand.Next(-25, 25)) + playerDistanceTeleport, player.Center.Y + (PIXELS_IN_BLOCK * Main.rand.Next(-25, 25)) + playerDistanceTeleport));
 		}
 
     }

@@ -19,7 +19,7 @@ namespace LucidMod.Items
 			Item.scale = 2;
 			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 20;
+			Item.knockBack = 10;
 			Item.value = 0;
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;

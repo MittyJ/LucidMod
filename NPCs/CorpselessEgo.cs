@@ -48,7 +48,7 @@ namespace LucidMod.NPCs
 
             Player player = Main.player[NPC.target];
 
-            Vector2 target = (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 2;
+            Vector2 target = (player.Center - NPC.Center).SafeNormalize(Vector2.Zero);
 
 			NPC.velocity = target;
         }

@@ -12,7 +12,7 @@ namespace LucidMod.NPCs
 	public class SoulHunter : ModNPC
 	{
 		//Quest: Gather Philospher tokens from benighted husks, quest rewards armor
-
+		bool questAsked = false;
 		InventorySaveSystem inventorySaveSystem = new InventorySaveSystem();
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
@@ -74,14 +74,15 @@ namespace LucidMod.NPCs
 						}
 					}
 				}
-				if (questComplete) {
+				if (questComplete && questAsked) {
 					Main.npcChatText = "Thank you! For your help I can give you the monk's armor";
 					Main.LocalPlayer.inventory[slot].stack -= 5;
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<MonasticHood>());
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<MonasticRobe>()); 
 					Item.NewItem(new EntitySource_Misc("Quest"), NPC.Center, ModContent.ItemType<MonasticLeggings>()); 
 				} else {
-					Main.npcChatText = "Go find me 5 philospher tokens by killing benighted husks, if you do so I can give you the monks armor set";
+					Main.npcChatText = "Go find me 5 philospher tokens by killing benighted husks, if you do so I can give you the monks armor set. Benighted husks come out at night";
+					questAsked = true;
 				}
 			} else {
 				Main.npcChatText = "Benighted husks are those who came to the lucid jungle and died, but their physical body still exists";
