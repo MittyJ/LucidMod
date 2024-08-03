@@ -1,5 +1,6 @@
 
 using LucidMod.Content.DamageClasses;
+using LucidMod.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -26,6 +27,9 @@ namespace LucidMod.Content.Projectiles
 
 		// Custom AI
 		public override void AI() {
+			if (!(Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem].type == ModContent.ItemType<LenezaldSheath>())) {
+				Projectile.Kill();
+			}
 			if (!controlled) {
 				float maxDetectRadius = 400f; // The maximum radius at which a projectile can detect a target
 				float projSpeed = 5f; // The speed at which the projectile moves towards the target

@@ -21,7 +21,7 @@ namespace LucidMod.Items
         int weaponIndex = 0;
         public override void SetDefaults()
 		{
-			Item.damage = 21;
+			Item.damage = 120;
 			Item.DamageType = ModContent.GetInstance<MonasticDamage>();
 			Item.useTime = 10;
 			Item.width = 20;
@@ -76,16 +76,16 @@ namespace LucidMod.Items
                     }
                 }
                 foreach (var projectile in Main.ActiveProjectiles) {
-                    if (projectile.type == ModContent.ProjectileType<LenezaldSheathSword>()) {
+                    if (projectile.type == ModContent.ProjectileType<LenezaldSheathSword>() || projectile.type == ModContent.ProjectileType<LenezaldSheathBloodSword>() || projectile.type == ModContent.ProjectileType<LenezaldSheathCutlass>() || projectile.type == ModContent.ProjectileType<LenezaldSheathMuramasa>() || projectile.type == ModContent.ProjectileType<LenezaldSheathPalladium>() || projectile.type == ModContent.ProjectileType<LenezaldSheathStarWrath>()) {
                         projectile.Kill();
                     }
                 }
                 int projCount = 0;
                 for (int i = 0; i < 6; i++) {
-                    Projectile.NewProjectile(source, new Vector2(player.Center.X + (float)Math.Cos(swordSpacing * i) * (10 * PIXELS_IN_BLOCK), player.Center.Y + (float)Math.Sin(swordSpacing * i) * (10 * PIXELS_IN_BLOCK)), new Vector2(0, 0), ModContent.ProjectileType<LenezaldSheathSword>(), damage, 0f, Main.myPlayer);
+                    Projectile.NewProjectile(source, new Vector2(player.Center.X + (float)Math.Cos(swordSpacing * i) * (10 * PIXELS_IN_BLOCK), player.Center.Y + (float)Math.Sin(swordSpacing * i) * (10 * PIXELS_IN_BLOCK)), new Vector2(0, 0), getProjectileTypeForIteration(i), damage, 0f, Main.myPlayer);
                 }
                 foreach (var projectile in Main.ActiveProjectiles) {
-                    if (projectile.type == ModContent.ProjectileType<LenezaldSheathSword>()) {
+                    if (projectile.type == ModContent.ProjectileType<LenezaldSheathSword>() || projectile.type == ModContent.ProjectileType<LenezaldSheathBloodSword>() || projectile.type == ModContent.ProjectileType<LenezaldSheathCutlass>() || projectile.type == ModContent.ProjectileType<LenezaldSheathMuramasa>() || projectile.type == ModContent.ProjectileType<LenezaldSheathPalladium>() || projectile.type == ModContent.ProjectileType<LenezaldSheathStarWrath>()) {
                         if (projCount < 6) {
                             weaponProjectiles[projCount] = projectile;
                             projCount++;
@@ -95,7 +95,7 @@ namespace LucidMod.Items
                 weaponIndex = 0;
             } else {
                 if (weaponIndex < 6) {
-                    weaponProjectiles[weaponIndex].velocity = (new Vector2(Main.mouseX , Main.mouseY) + Main.screenPosition - weaponProjectiles[weaponIndex].Center).SafeNormalize(Vector2.Zero) * 20;
+                    weaponProjectiles[weaponIndex].velocity = (new Vector2(Main.mouseX , Main.mouseY) + Main.screenPosition - weaponProjectiles[weaponIndex].Center).SafeNormalize(Vector2.Zero) * 40;
 			        weaponProjectiles[weaponIndex].rotation = weaponProjectiles[weaponIndex].velocity.ToRotation();
                     weaponProjectiles[weaponIndex] = null;
                     weaponIndex++;
@@ -105,5 +105,25 @@ namespace LucidMod.Items
 
 			return false;
 		}
+
+        private int getProjectileTypeForIteration(int i) {
+            switch (i) {
+                case 0:
+                return ModContent.ProjectileType<LenezaldSheathSword>();
+                case 1:
+                return ModContent.ProjectileType<LenezaldSheathBloodSword>();
+                case 2:
+                return ModContent.ProjectileType<LenezaldSheathCutlass>();
+                case 3:
+                return ModContent.ProjectileType<LenezaldSheathMuramasa>();
+                case 4:
+                return ModContent.ProjectileType<LenezaldSheathStarWrath>();
+                case 5:
+                return ModContent.ProjectileType<LenezaldSheathPalladium>();
+                case 6:
+                return ModContent.ProjectileType<LenezaldSheathSword>();
+            }
+            return ModContent.ProjectileType<LenezaldSheathSword>();
+        }
     }
 }

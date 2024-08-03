@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LucidMod.Content.Projectiles;
 
-namespace LucidMod.Items
+namespace LucidMod.Content.Projectiles
 {
     public class LenezaldSheathStarWrath : LenezaldSheathSword
     {

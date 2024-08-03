@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LucidMod.Content.Projectiles
 {
-    public class LenezaldSheathExcalibur : LenezaldSheathSword
+    public class LenezaldSheathCutlass : LenezaldSheathSword
     {
         
     }
