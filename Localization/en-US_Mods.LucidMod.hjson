@@ -80,6 +80,16 @@ Items: {
 		DisplayName: Renezald's Staff of the 6th Mage
 		Tooltip: ""
 	}
+
+	LenezaldShieth: {
+		DisplayName: Lenezald Shieth
+		Tooltip: ""
+	}
+
+	LenezaldSheath: {
+		DisplayName: Lenezald Sheath
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -213,6 +223,7 @@ Projectiles: {
 	SpecialLenezaldSword.DisplayName: Special Lenezald Sword
 	TinglerBeam.DisplayName: Tingler Beam
 	MonkFlare.DisplayName: Monk Flare
+	LenezaldSheathSword.DisplayName: Lenezald Sheath Sword
 }
 
 DamageClasses.MonasticDamage.DisplayName: Monastic Damage

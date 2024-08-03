@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using LucidMod.Content.Projectiles;
+using LucidMod.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -94,6 +95,10 @@ namespace LucidMod.NPCs
 		public override void ModifyNPCLoot(NPCLoot npcLoot) {
 			// // Do NOT misuse the ModifyNPCLoot and OnKill hooks: the former is only used for registering drops, the latter for everything else
 
+		}
+
+		public override void OnKill() {
+			Item.NewItem(NPC.GetSource_Death(), NPC.Center, ModContent.ItemType<LenezaldSheath>(), 1, true);
 		}
 
 		public override void HitEffect(NPC.HitInfo hit) {
