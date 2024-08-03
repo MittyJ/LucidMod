@@ -19,7 +19,7 @@ namespace LucidMod.Content.Projectiles
 			Projectile.friendly = true; // Can the projectile deal damage to enemies?
 			Projectile.hostile = false; // Can the projectile deal damage to the player?
 			Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
-			Projectile.light = 1f; // How much light emit around the projectile
+			Projectile.light = 0f; // How much light emit around the projectile
 			Projectile.tileCollide = false; // Can the projectile collide with tiles?
 			Projectile.timeLeft = 60000; // The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
 		}

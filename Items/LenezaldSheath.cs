@@ -14,7 +14,7 @@ namespace LucidMod.Items
     public class LenezaldSheath : ModItem
     {
         const int PIXELS_IN_BLOCK = 16;
-        const int SHOT_SPEED = 20;
+
         const int BLOCKS_AWAY_FROM_PLAYER = 10;
         double swordSpacing = Math.PI * 2 / 6;
         Projectile[] weaponProjectiles = new Projectile[6];
@@ -95,7 +95,8 @@ namespace LucidMod.Items
                 weaponIndex = 0;
             } else {
                 if (weaponIndex < 6) {
-                    weaponProjectiles[weaponIndex].velocity = new Vector2((float)(Math.Cos(weaponProjectiles[weaponIndex].rotation) * SHOT_SPEED), (float)(Math.Sin(weaponProjectiles[weaponIndex].rotation) * SHOT_SPEED));
+                    weaponProjectiles[weaponIndex].velocity = (new Vector2(Main.mouseX , Main.mouseY) + Main.screenPosition - weaponProjectiles[weaponIndex].Center).SafeNormalize(Vector2.Zero) * 20;
+			        weaponProjectiles[weaponIndex].rotation = weaponProjectiles[weaponIndex].velocity.ToRotation();
                     weaponProjectiles[weaponIndex] = null;
                     weaponIndex++;
                 }
