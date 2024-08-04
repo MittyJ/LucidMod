@@ -1,5 +1,5 @@
-displayName = Lucid Mod
+displayName = Lucid Mod [ALPHA]
 author = Mitty
-version = 0.1
+version = 0.1.1
 modReferences = SubworldLibrary
 dllReferences = StructureHelper

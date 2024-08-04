@@ -80,6 +80,16 @@ Items: {
 		DisplayName: Renezald's Staff of the 6th Mage
 		Tooltip: ""
 	}
+
+	LenezaldShieth: {
+		DisplayName: Lenezald Shieth
+		Tooltip: ""
+	}
+
+	LenezaldSheath: {
+		DisplayName: Lenezald's Sheath of 1000 Swords
+		Tooltip: Allows you to use Lenezald's ability to conjure swords as weapons
+	}
 }
 
 NPCs: {
@@ -203,23 +213,29 @@ NPCs: {
 }
 
 Projectiles: {
-	LenezaldSword.DisplayName: Lenezald Sword
-	LenezaldBloodSword.DisplayName: Lenezald Blood Sword
-	LenezaldCutlass.DisplayName: Lenezald Cutlass
-	LenezaldExcalibur.DisplayName: Lenezald Excalibur
-	LenezaldMuramasa.DisplayName: Lenezald Muramasa
-	LenezaldPalladium.DisplayName: Lenezald Palladium
-	LenezaldStarWrath.DisplayName: Lenezald Star Wrath
-	SpecialLenezaldSword.DisplayName: Special Lenezald Sword
+	LenezaldSword.DisplayName: Lenezald's Sword
+	LenezaldBloodSword.DisplayName: Lenezald's Sword
+	LenezaldCutlass.DisplayName: Lenezald's Sword
+	LenezaldExcalibur.DisplayName: Lenezald's Sword
+	LenezaldMuramasa.DisplayName: Lenezald's Sword
+	LenezaldPalladium.DisplayName: Lenezald's Sword
+	LenezaldStarWrath.DisplayName: Lenezald's Sword
+	SpecialLenezaldSword.DisplayName: Lenezald's Sword
 	TinglerBeam.DisplayName: Tingler Beam
 	MonkFlare.DisplayName: Monk Flare
+	LenezaldSheathSword.DisplayName: Lenezald's Sheath Sword
+	LenezaldSheathBloodSword.DisplayName: Lenezald's Sheath Sword
+	LenezaldSheathCutlass.DisplayName: Lenezald's Sheath Sword
+	LenezaldSheathMuramasa.DisplayName: Lenezald's Sheath Sword
+	LenezaldSheathPalladium.DisplayName: Lenezald's Sheath Sword
+	LenezaldSheathStarWrath.DisplayName: Lenezald's Sheath Sword
 }
 
 DamageClasses.MonasticDamage.DisplayName: Monastic Damage
 
 Biomes: {
 	LucidJungleBiome: {
-		DisplayName: Lucid Jungle Biome
-		TownNPCDialogueName: the Lucid Jungle Biome
+		DisplayName: Lucid Jungle
+		TownNPCDialogueName: the Lucid Jungle
 	}
 }

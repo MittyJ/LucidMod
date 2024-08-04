@@ -9,8 +9,8 @@ Another key point to this mod is that its progression is completely isolated fro
 
 The mod starts when you get access to the Ponderer town NPC after defeating king slime. With him you can access the new dimension the "LUCID JUNGLE".
 
-Discord:
-Github:
+Discord: https://discord.gg/NrYe4QvEHh
+Github: https://github.com/MittyJ/LucidMod
 
 Release Features:
 2 Weapons
@@ -22,3 +22,5 @@ Release Features:
 4 "Town" NPCs
 2 Enemies
 3 Quests
+
+I do plan to update this mod, and I have a lot of plans for what is to come. I want to flesh out the current content, add more, and hopefully more bosses. As the mod is in Alpha most of content and mechanics may change.
